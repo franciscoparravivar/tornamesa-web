@@ -73,7 +73,7 @@
         transform: scale(1);
       }
       50% {
-        transform: scale(1.055);
+        transform: scale(1.045);
       }
     }
 
@@ -85,7 +85,7 @@
   </style>
 </head>
 
-<body class="relative min-h-screen flex flex-col justify-between selection:bg-[#ff3700] selection:text-white">
+<body class="relative min-h-[100dvh] h-screen flex flex-col justify-between selection:bg-[#ff3700] selection:text-white p-2 sm:p-4 box-border overflow-hidden">
 
   <!-- Interactive Canvas: Stage dust & Warm amber/orange light particles -->
   <canvas id="stage-canvas" class="fixed inset-0 w-full h-full pointer-events-none z-0"></canvas>
@@ -95,76 +95,76 @@
   <div class="fixed -top-48 left-1/2 -translate-x-1/2 w-[900px] h-[550px] bg-gradient-to-b from-[#ff3700]/18 via-[#ff6a00]/06 to-transparent blur-3xl pointer-events-none z-0"></div>
 
   <!-- Top Minimalist Brand Header -->
-  <header class="relative z-10 w-full max-w-5xl mx-auto px-6 pt-7 sm:pt-8 flex items-center justify-center">
-    <div class="flex items-center gap-3">
+  <header class="relative z-10 w-full max-w-5xl mx-auto px-4 pt-1 sm:pt-2 flex items-center justify-center shrink-0">
+    <div class="flex items-center gap-2.5">
       <!-- Power/Stage Stylized Icon -->
-      <div class="relative w-8 h-8 rounded-full border border-[#ff3700]/70 flex items-center justify-center bg-black/80 shadow-[0_0_16px_rgba(255,55,0,0.5)]">
-        <div class="w-1.5 h-3.5 bg-[#ff3700] rounded-sm absolute -top-1 left-1/2 -translate-x-1/2 shadow-[0_0_8px_#ff3700]"></div>
-        <span class="text-xs font-orbitron font-extrabold text-white pl-0.5">T</span>
+      <div class="relative w-7 h-7 rounded-full border border-[#ff3700]/70 flex items-center justify-center bg-black/80 shadow-[0_0_16px_rgba(255,55,0,0.5)]">
+        <div class="w-1 h-3 bg-[#ff3700] rounded-sm absolute -top-1 left-1/2 -translate-x-1/2 shadow-[0_0_8px_#ff3700]"></div>
+        <span class="text-[11px] font-orbitron font-extrabold text-white pl-0.5">T</span>
       </div>
       <div class="tracking-widest">
-        <span class="font-orbitron font-extrabold text-base tracking-[0.28em] text-white">TORNAMESA</span>
+        <span class="font-orbitron font-extrabold text-sm sm:text-base tracking-[0.28em] text-white">TORNAMESA</span>
       </div>
     </div>
   </header>
 
   <!-- Central Showcase Area -->
-  <main class="relative z-10 w-full max-w-4xl mx-auto px-4 sm:px-6 py-6 sm:py-8 flex-1 flex flex-col justify-center items-center">
+  <main class="relative z-10 w-full max-w-3xl mx-auto px-3 sm:px-6 py-2 flex-1 flex flex-col justify-center items-center min-h-0">
     
-    <div class="glass-showcase rounded-2xl sm:rounded-3xl p-4 sm:p-8 w-full relative overflow-hidden transition-all duration-300">
+    <div class="glass-showcase rounded-2xl sm:rounded-3xl p-3 sm:p-6 w-full relative overflow-hidden transition-all duration-300 flex flex-col items-center justify-center my-auto">
       
       <!-- Top Cyber Neon Line -->
       <div class="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#ff3700] to-transparent"></div>
 
       <!-- Main Showcase Banner Image -->
-      <div class="relative group rounded-xl overflow-hidden border border-white/10 bg-black/80 shadow-2xl">
+      <div class="relative group rounded-xl overflow-hidden border border-white/10 bg-black/80 shadow-2xl w-full flex items-center justify-center shrink">
         <!-- Ambient lighting glow behind image -->
         <div class="absolute inset-0 bg-[#ff3700]/10 blur-xl rounded-xl -z-10 group-hover:bg-[#ff3700]/20 transition-all duration-700"></div>
 
-        <!-- Banner Image with breathing zoom effect -->
+        <!-- Banner Image with responsive dynamic viewport height -->
         <img 
           id="main-banner"
-          src="./enconstruccion.jpeg" 
+          src="./banner.png" 
           alt="Tornamesa Producción Técnica"
-          class="w-full h-auto max-h-[440px] object-cover object-center breathe-banner"
+          class="w-full h-auto max-h-[34vh] sm:max-h-[38vh] object-contain object-center breathe-banner"
           onerror="handleImageFallback(this)"
         />
 
         <!-- Subtle cinematic vignette overlay -->
-        <div class="absolute inset-0 bg-gradient-to-t from-[#08080a]/80 via-transparent to-transparent pointer-events-none"></div>
+        <div class="absolute inset-0 bg-gradient-to-t from-[#08080a]/60 via-transparent to-transparent pointer-events-none"></div>
       </div>
 
       <!-- Centered Typography: PRODUCCIÓN TÉCNICA -->
-      <div class="text-center mt-7 sm:mt-8">
-        <h1 class="font-orbitron text-base sm:text-xl lg:text-2xl font-bold tracking-[0.38em] uppercase text-[#ff5e1a] text-glow mb-4">
+      <div class="text-center mt-3 sm:mt-4 shrink-0">
+        <h1 class="font-orbitron text-xs sm:text-base lg:text-lg font-bold tracking-[0.34em] uppercase text-[#ff5e1a] text-glow mb-1.5 sm:mb-2">
           PRODUCCIÓN TÉCNICA
         </h1>
         
-        <p class="text-sm sm:text-base text-zinc-300 max-w-lg mx-auto leading-relaxed font-normal">
+        <p class="text-xs sm:text-sm text-zinc-300 max-w-md mx-auto leading-relaxed font-normal">
           Soluciones integrales de audio profesional, iluminación escénica, estructuras y tecnología de vanguardia para eventos y conciertos.
         </p>
       </div>
 
       <!-- Direct Contact Actions (WhatsApp & Mail) -->
-      <div class="mt-8 pt-7 border-t border-white/08 flex flex-col sm:flex-row items-center justify-center gap-4">
+      <div class="mt-3 sm:mt-4 pt-3 border-t border-white/08 flex flex-col sm:flex-row items-center justify-center gap-2.5 sm:gap-4 w-full shrink-0">
         
         <!-- WhatsApp Direct -->
         <a 
           href="https://wa.me/56940278209?text=Hola%20Tornamesa%20Producci%C3%B3n,%20quisiera%20cotizar%20un%20servicio" 
           target="_blank" 
           rel="noopener noreferrer"
-          class="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-6 py-3.5 rounded-xl bg-gradient-to-r from-emerald-600/90 to-emerald-700 hover:from-emerald-500 hover:to-emerald-600 text-white font-medium text-sm tracking-wide transition-all shadow-[0_0_25px_rgba(16,185,129,0.3)] hover:shadow-[0_0_35px_rgba(16,185,129,0.45)] group"
+          class="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-5 py-2.5 rounded-xl bg-gradient-to-r from-emerald-600/90 to-emerald-700 hover:from-emerald-500 hover:to-emerald-600 text-white font-medium text-xs sm:text-sm tracking-wide transition-all shadow-[0_0_20px_rgba(16,185,129,0.3)] hover:shadow-[0_0_30px_rgba(16,185,129,0.45)] group"
         >
-          <i data-lucide="message-circle" class="w-5 h-5 group-hover:scale-110 transition-transform"></i>
+          <i data-lucide="message-circle" class="w-4 h-4 group-hover:scale-110 transition-transform"></i>
           <span>WhatsApp: +56 9 40278209</span>
         </a>
 
         <!-- Email Direct -->
         <a 
           href="mailto:Contacto@tornamesaprod.cl" 
-          class="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-6 py-3.5 rounded-xl bg-white/[0.06] hover:bg-white/[0.12] border border-white/12 hover:border-[#ff3700]/60 text-zinc-100 hover:text-white font-medium text-sm tracking-wide transition-all shadow-[0_0_20px_rgba(0,0,0,0.5)] group"
+          class="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-5 py-2.5 rounded-xl bg-white/[0.06] hover:bg-white/[0.12] border border-white/12 hover:border-[#ff3700]/60 text-zinc-100 hover:text-white font-medium text-xs sm:text-sm tracking-wide transition-all shadow-[0_0_15px_rgba(0,0,0,0.5)] group"
         >
-          <i data-lucide="mail" class="w-5 h-5 text-[#ff5e1a] group-hover:scale-110 transition-transform"></i>
+          <i data-lucide="mail" class="w-4 h-4 text-[#ff5e1a] group-hover:scale-110 transition-transform"></i>
           <span>Contacto@tornamesaprod.cl</span>
         </a>
 
@@ -174,11 +174,11 @@
   </main>
 
   <!-- Clean Footer -->
-  <footer class="relative z-10 w-full max-w-5xl mx-auto px-6 py-6 text-center text-xs text-zinc-500 flex flex-col sm:flex-row items-center justify-between gap-2 border-t border-white/05 font-mono">
+  <footer class="relative z-10 w-full max-w-5xl mx-auto px-4 py-2 text-center text-[10px] sm:text-xs text-zinc-500 flex flex-col sm:flex-row items-center justify-between gap-1 border-t border-white/05 font-mono shrink-0">
     <div>
       © Tornamesa Producción Técnica. Todos los derechos reservados.
     </div>
-    <div class="flex items-center gap-3 text-zinc-400">
+    <div class="flex items-center gap-2 text-zinc-400">
       <span>CHILE</span>
       <span>•</span>
       <span>AUDIO</span>
