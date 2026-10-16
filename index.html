@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="es" class="h-full">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TORNAMESA | Producción Técnica</title>
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Google Fonts: Orbitron & Space Grotesk -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800;900&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+  
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              orange: '#ff3700',
+              glow: 'rgba(255, 55, 0, 0.4)',
+              dark: '#08080a',
+              surface: 'rgba(14, 14, 18, 0.72)'
+            }
+          },
+          fontFamily: {
+            orbitron: ['Orbitron', 'sans-serif'],
+            space: ['Space Grotesk', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      background-color: #070709;
+      color: #f3f4f6;
+      font-family: 'Space Grotesk', sans-serif;
+      overflow-x: hidden;
+    }
+
+    /* Ambient cyber-stage grid pattern */
+    .stage-grid {
+      background-size: 48px 48px;
+      background-image: 
+        linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+    }
+
+    /* Glass card backdrop */
+    .glass-showcase {
+      background: radial-gradient(120% 120% at 50% 0%, rgba(22, 22, 28, 0.78) 0%, rgba(10, 10, 13, 0.92) 100%);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.8), 0 0 45px -15px rgba(255, 55, 0, 0.22);
+    }
+
+    /* Spotlight gradient text */
+    .text-glow {
+      text-shadow: 0 0 24px rgba(255, 55, 0, 0.45);
+    }
+
+    /* Ambient breathing / pulsing zoom animation for the showcase banner */
+    @keyframes breatheZoom {
+      0%, 100% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.055);
+      }
+    }
+
+    .breathe-banner {
+      animation: breatheZoom 8s ease-in-out infinite;
+      transform-origin: center center;
+      will-change: transform;
+    }
+  </style>
+</head>
+
+<body class="relative min-h-screen flex flex-col justify-between selection:bg-[#ff3700] selection:text-white">
+
+  <!-- Interactive Canvas: Stage dust & Warm amber/orange light particles -->
+  <canvas id="stage-canvas" class="fixed inset-0 w-full h-full pointer-events-none z-0"></canvas>
+  <div class="fixed inset-0 stage-grid pointer-events-none z-0 opacity-70"></div>
+
+  <!-- Warm overhead scenic lighting -->
+  <div class="fixed -top-48 left-1/2 -translate-x-1/2 w-[900px] h-[550px] bg-gradient-to-b from-[#ff3700]/18 via-[#ff6a00]/06 to-transparent blur-3xl pointer-events-none z-0"></div>
+
+  <!-- Top Minimalist Brand Header -->
+  <header class="relative z-10 w-full max-w-5xl mx-auto px-6 pt-7 sm:pt-8 flex items-center justify-center">
+    <div class="flex items-center gap-3">
+      <!-- Power/Stage Stylized Icon -->
+      <div class="relative w-8 h-8 rounded-full border border-[#ff3700]/70 flex items-center justify-center bg-black/80 shadow-[0_0_16px_rgba(255,55,0,0.5)]">
+        <div class="w-1.5 h-3.5 bg-[#ff3700] rounded-sm absolute -top-1 left-1/2 -translate-x-1/2 shadow-[0_0_8px_#ff3700]"></div>
+        <span class="text-xs font-orbitron font-extrabold text-white pl-0.5">T</span>
+      </div>
+      <div class="tracking-widest">
+        <span class="font-orbitron font-extrabold text-base tracking-[0.28em] text-white">TORNAMESA</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Central Showcase Area -->
+  <main class="relative z-10 w-full max-w-4xl mx-auto px-4 sm:px-6 py-6 sm:py-8 flex-1 flex flex-col justify-center items-center">
+    
+    <div class="glass-showcase rounded-2xl sm:rounded-3xl p-4 sm:p-8 w-full relative overflow-hidden transition-all duration-300">
+      
+      <!-- Top Cyber Neon Line -->
+      <div class="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#ff3700] to-transparent"></div>
+
+      <!-- Main Showcase Banner Image -->
+      <div class="relative group rounded-xl overflow-hidden border border-white/10 bg-black/80 shadow-2xl">
+        <!-- Ambient lighting glow behind image -->
+        <div class="absolute inset-0 bg-[#ff3700]/10 blur-xl rounded-xl -z-10 group-hover:bg-[#ff3700]/20 transition-all duration-700"></div>
+
+        <!-- Banner Image with breathing zoom effect -->
+        <img 
+          id="main-banner"
+          src="./enconstruccion.jpeg" 
+          alt="Tornamesa Producción Técnica"
+          class="w-full h-auto max-h-[440px] object-cover object-center breathe-banner"
+          onerror="handleImageFallback(this)"
+        />
+
+        <!-- Subtle cinematic vignette overlay -->
+        <div class="absolute inset-0 bg-gradient-to-t from-[#08080a]/80 via-transparent to-transparent pointer-events-none"></div>
+      </div>
+
+      <!-- Centered Typography: PRODUCCIÓN TÉCNICA -->
+      <div class="text-center mt-7 sm:mt-8">
+        <h1 class="font-orbitron text-base sm:text-xl lg:text-2xl font-bold tracking-[0.38em] uppercase text-[#ff5e1a] text-glow mb-4">
+          PRODUCCIÓN TÉCNICA
+        </h1>
+        
+        <p class="text-sm sm:text-base text-zinc-300 max-w-lg mx-auto leading-relaxed font-normal">
+          Soluciones integrales de audio profesional, iluminación escénica, estructuras y tecnología de vanguardia para eventos y conciertos.
+        </p>
+      </div>
+
+      <!-- Direct Contact Actions (WhatsApp & Mail) -->
+      <div class="mt-8 pt-7 border-t border-white/08 flex flex-col sm:flex-row items-center justify-center gap-4">
+        
+        <!-- WhatsApp Direct -->
+        <a 
+          href="https://wa.me/56940278209?text=Hola%20Tornamesa%20Producci%C3%B3n,%20quisiera%20cotizar%20un%20servicio" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          class="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-6 py-3.5 rounded-xl bg-gradient-to-r from-emerald-600/90 to-emerald-700 hover:from-emerald-500 hover:to-emerald-600 text-white font-medium text-sm tracking-wide transition-all shadow-[0_0_25px_rgba(16,185,129,0.3)] hover:shadow-[0_0_35px_rgba(16,185,129,0.45)] group"
+        >
+          <i data-lucide="message-circle" class="w-5 h-5 group-hover:scale-110 transition-transform"></i>
+          <span>WhatsApp: +56 9 40278209</span>
+        </a>
+
+        <!-- Email Direct -->
+        <a 
+          href="mailto:Contacto@tornamesaprod.cl" 
+          class="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-6 py-3.5 rounded-xl bg-white/[0.06] hover:bg-white/[0.12] border border-white/12 hover:border-[#ff3700]/60 text-zinc-100 hover:text-white font-medium text-sm tracking-wide transition-all shadow-[0_0_20px_rgba(0,0,0,0.5)] group"
+        >
+          <i data-lucide="mail" class="w-5 h-5 text-[#ff5e1a] group-hover:scale-110 transition-transform"></i>
+          <span>Contacto@tornamesaprod.cl</span>
+        </a>
+
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Clean Footer -->
+  <footer class="relative z-10 w-full max-w-5xl mx-auto px-6 py-6 text-center text-xs text-zinc-500 flex flex-col sm:flex-row items-center justify-between gap-2 border-t border-white/05 font-mono">
+    <div>
+      © Tornamesa Producción Técnica. Todos los derechos reservados.
+    </div>
+    <div class="flex items-center gap-3 text-zinc-400">
+      <span>CHILE</span>
+      <span>•</span>
+      <span>AUDIO</span>
+      <span>•</span>
+      <span>ILUMINACIÓN</span>
+      <span>•</span>
+      <span>ESCENARIOS</span>
+    </div>
+  </footer>
+
+  <!-- Particle Simulation Script -->
+  <script>
+    // Initialize Lucide Icons
+    lucide.createIcons();
+
+    // Subtle stage atmosphere canvas
+    const canvas = document.getElementById('stage-canvas');
+    const ctx = canvas.getContext('2d');
+    let width = canvas.width = window.innerWidth;
+    let height = canvas.height = window.innerHeight;
+
+    window.addEventListener('resize', () => {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+    });
+
+    const particles = [];
+    const PARTICLE_COUNT = 38;
+
+    for (let i = 0; i < PARTICLE_COUNT; i++) {
+      particles.push({
+        x: Math.random() * width,
+        y: Math.random() * height,
+        radius: Math.random() * 1.8 + 0.6,
+        vx: (Math.random() - 0.5) * 0.35,
+        vy: (Math.random() - 0.5) * 0.35 - 0.15,
+        alpha: Math.random() * 0.45 + 0.15,
+        color: Math.random() > 0.55 ? '#ff3700' : '#ffa044'
+      });
+    }
+
+    function animate() {
+      ctx.clearRect(0, 0, width, height);
+
+      for (let i = 0; i < particles.length; i++) {
+        const p = particles[i];
+        p.x += p.vx;
+        p.y += p.vy;
+
+        if (p.x < 0) p.x = width;
+        if (p.x > width) p.x = 0;
+        if (p.y < 0) p.y = height;
+        if (p.y > height) p.y = 0;
+
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+        ctx.fillStyle = p.color === '#ff3700' 
+          ? `rgba(255, 55, 0, ${p.alpha})` 
+          : `rgba(255, 160, 68, ${p.alpha * 0.7})`;
+        ctx.shadowBlur = 10;
+        ctx.shadowColor = '#ff3700';
+        ctx.fill();
+        ctx.shadowBlur = 0;
+      }
+
+      requestAnimationFrame(animate);
+    }
+    requestAnimationFrame(animate);
+
+    // Fallback if banner image is named banner.jpg or placeholder
+    function handleImageFallback(img) {
+      if (!img.getAttribute('data-fallback-attempted')) {
+        img.setAttribute('data-fallback-attempted', 'true');
+        img.src = './banner.jpg';
+        return;
+      }
+      img.onerror = null;
+      img.src = 'https://placehold.co/1200x600/0a0a0e/ff3700?text=TORNAMESA+%E2%80%A2+PRODUCCI%C3%93N+T%C3%89CNICA';
+    }
+  </script>
+</body>
+</html>
